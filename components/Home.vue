@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-4">
       <p class="text-2xl font-bold">Suas Organizações</p>
       <div class="flex gap-2">
-        <ActionButton><Plus /> Nova organização </ActionButton>
+        <DefaultButton><Plus /> Nova organização </DefaultButton>
         <!-- todo: criar um componente com esse input -->
         <input
           type="search"
