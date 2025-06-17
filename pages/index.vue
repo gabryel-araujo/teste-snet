@@ -1,8 +1,11 @@
+<script setup>
+definePageMeta({
+  layout: "login",
+});
+</script>
+
 <template>
-  <div>
-    <h1>Testando a main</h1>
-    <Componente>
-      <p>Esse é um componente</p>
-    </Componente>
+  <div class="flex justify-center items-center flex-1 p-4">
+    <LoginForm />
   </div>
 </template>
