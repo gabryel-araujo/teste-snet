@@ -1,4 +1,6 @@
 <script setup>
+import axiosInstance from "~/api/axios";
+
 const props = defineProps({
   company: {
     type: Object,
@@ -6,21 +8,51 @@ const props = defineProps({
   },
 });
 
-import { X } from "lucide-vue-next";
+const stores = ref([]);
+
+onMounted(async () => {
+  const response = await axiosInstance.get("/lojas");
+  stores.value = response.data;
+  console.log(response.data);
+});
+
+async function getEstabs() {
+  const response = await axiosInstance.get("/lojas");
+  stores.value = response.data;
+}
 </script>
 
 <template>
-  <div class="w-full bg-gray-900 rounded-md border border-gray-600 p-4">
-    <div class="flex items-center justify-between">
-      <h2 class="text-xl font-bold">Detalhes da Empresa</h2>
-      <button
-        class="text-red-500 cursor-pointer hover:text-red-400 transition"
-        @click="$emit('close')"
+  <div class="flex flex-col w-full gap-4">
+    <div class="rounded-md">
+      <table
+        class="min-w-full divide-y divide-gray-600 text-sm text-left text-white bg-gray-800 rounded-md"
       >
-        <X />
-      </button>
+        <thead class="bg-gray-700 text-xs uppercase text-gray-300">
+          <tr>
+            <th class="px-4 py-3" @click="isOpen = true">Nome</th>
+            <th class="px-4 py-3">Número</th>
+            <th class="px-4 py-3">Razão Social</th>
+            <th class="px-4 py-3">Endereço</th>
+            <th class="px-4 py-3">Cidade</th>
+            <th class="px-4 py-3">Estado</th>
+            <th class="px-4 py-3">CEP</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-600">
+          <tr v-for="store in stores" :key="store.id" class="hover:bg-gray-700">
+            <td class="px-4 py-2">{{ store.nome }}</td>
+            <td class="px-4 py-2">{{ store.numero_loja }}</td>
+            <td class="px-4 py-2">{{ store.razao_social || "-" }}</td>
+            <td class="px-4 py-2">
+              {{ store.endereco }}{{ store.numero ? ", " + store.numero : "" }}
+            </td>
+            <td class="px-4 py-2">{{ store.cidade }}</td>
+            <td class="px-4 py-2">{{ store.estado }}</td>
+            <td class="px-4 py-2">{{ store.cep }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
-    <CompanyForm />
   </div>
 </template>
