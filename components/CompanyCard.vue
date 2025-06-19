@@ -3,20 +3,23 @@ import { Building2, EllipsisVertical } from "lucide-vue-next";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 
 const props = defineProps({
-  companyName: {
-    type: String,
+  company: {
+    type: Object,
     required: true,
-  },
-  companyNumber: {
-    type: Number,
-    required: true,
-    default: 30,
   },
 });
+
+function editar() {
+  alert(props.companyName);
+}
+
+function excluir() {
+  alert(props.companyNumber);
+}
 </script>
 
 <template>
-  <div class="relative">
+  <div class="relative" @click="$emit('click')">
     <Menu>
       <div
         class="flex border border-gray-600 p-4 rounded-lg bg-gray-900 justify-between items-center hover:ring-1 hover:ring-emerald-400 hover:ring-opacity-70 transition hover:cursor-pointer"
@@ -26,8 +29,8 @@ const props = defineProps({
             <Building2 />
           </div>
           <section>
-            <p class="font-bold">{{ companyName }}</p>
-            <p class="text-gray-500 text-xs">{{ companyNumber }}</p>
+            <p class="font-bold">{{ company.name }}</p>
+            <p class="text-gray-500 text-xs">{{ company.number }}</p>
           </section>
         </section>
         <MenuButton
@@ -51,12 +54,13 @@ const props = defineProps({
           class="absolute right-4 top-full mt-1 w-56 origin-top-right divide-y divide-gray-700 rounded-md bg-gray-800 shadow-lg ring-1 ring-gray-600 focus:outline-none z-20"
         >
           <div class="px-1 py-1">
-            <MenuItem v-slot="{ active }">
+            <MenuItem v-slot="{ active }" as="template">
               <button
                 :class="[
                   active ? 'bg-emerald-500 text-white' : 'text-gray-300',
                   'group flex w-full items-center rounded-md px-2 py-2 text-sm cursor-pointer',
                 ]"
+                @click="editar"
               >
                 Editar
               </button>
@@ -67,6 +71,7 @@ const props = defineProps({
                   active ? 'bg-emerald-500 text-white' : 'text-gray-300',
                   'group flex w-full items-center rounded-md px-2 py-2 text-sm cursor-pointer',
                 ]"
+                @click="excluir"
               >
                 Excluir
               </button>
