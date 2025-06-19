@@ -1,21 +1,15 @@
-<script setup>
+<script setup lang="ts">
 import { Building2, EllipsisVertical } from "lucide-vue-next";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
+import type { Estabelecimentos } from "~/types/Estabelecimentos";
 
-const props = defineProps({
-  company: {
-    type: Object,
-    required: true,
-  },
-});
+const props = defineProps<{
+  company: Estabelecimentos;
+}>();
 
-function editar() {
-  alert(props.companyName);
-}
+function editar() {}
 
-function excluir() {
-  alert(props.companyNumber);
-}
+function excluir() {}
 </script>
 
 <template>
@@ -29,8 +23,10 @@ function excluir() {
             <Building2 />
           </div>
           <section>
-            <p class="font-bold">{{ company.name }}</p>
-            <p class="text-gray-500 text-xs">{{ company.number }}</p>
+            <p class="font-bold">{{ props.company.nome }}</p>
+            <p class="text-gray-500 text-xs">
+              {{ props.company.numero_estabelecimento }}
+            </p>
           </section>
         </section>
         <MenuButton
