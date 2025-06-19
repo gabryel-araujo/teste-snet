@@ -8,10 +8,13 @@ import (
 	"github.com/gabryel-araujo/back-go-snet/repository"
 	"github.com/gabryel-araujo/back-go-snet/service"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func main(){
 	e := echo.New()
+
+	e.Use(middleware.CORS())
 
 	d := db.Connect()
 	defer d.Close()
