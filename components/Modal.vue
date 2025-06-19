@@ -1,4 +1,5 @@
 <script setup>
+import { X } from "lucide-vue-next";
 import { ref } from "vue";
 import {
   TransitionRoot,
@@ -21,7 +22,6 @@ const props = defineProps({
     required: true,
   },
 });
-
 const emit = defineEmits(["close"]);
 </script>
 
@@ -56,12 +56,19 @@ const emit = defineEmits(["close"]);
             <DialogPanel
               class="w-full max-w-md transform overflow-hidden rounded-2xl bg-gray-900 p-6 text-left align-middle shadow-xl transition-all"
             >
-              <DialogTitle
-                as="h3"
-                class="text-lg font-medium leading-6 text-white"
-              >
-                {{ title }}
-              </DialogTitle>
+              <section class="flex justify-between">
+                <DialogTitle
+                  as="h3"
+                  class="text-lg font-medium leading-6 text-white"
+                >
+                  {{ title }}
+                </DialogTitle>
+                <X
+                  class="text-red-500 cursor-pointer hover:text-red-700"
+                  @click="$emit('close')"
+                />
+              </section>
+
               <div class="mt-2">
                 <p class="text-sm text-gray-500">
                   {{ subtitle }}
@@ -70,18 +77,6 @@ const emit = defineEmits(["close"]);
 
               <div class="text-white mt-4 flex flex-col w-full">
                 <slot />
-              </div>
-
-              <div class="mt-4 w-full flex justify-end gap-2">
-                <DefaultButton
-                  @click="$emit('close')"
-                  class="bg-red-500 hover:bg-red-600"
-                >
-                  <p class="text-gray-200">Cancelar</p>
-                </DefaultButton>
-                <DefaultButton @click="$emit('close')">
-                  Cadastrar
-                </DefaultButton>
               </div>
             </DialogPanel>
           </TransitionChild>
