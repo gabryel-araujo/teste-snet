@@ -1,4 +1,8 @@
 <script setup>
+definePageMeta({
+  middleware: "fake-auth",
+});
+
 const companies = ref([
   {
     id: 1,
