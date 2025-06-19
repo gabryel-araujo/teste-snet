@@ -1,4 +1,4 @@
-CREATE TABLE estabelecimentos (
+CREATE TABLE IF NOT EXISTS estabelecimentos (
   id SERIAL PRIMARY KEY,
   nome VARCHAR(255) NOT NULL,
   numero_estabelecimento INTEGER NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE estabelecimentos (
   numero VARCHAR(15)
 );
 
-CREATE TABLE lojas (
+CREATE TABLE IF NOT EXISTS lojas (
   id SERIAL PRIMARY KEY,
   nome VARCHAR(255) NOT NULL,
   numero_loja INTEGER NOT NULL,
