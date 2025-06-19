@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { Plus } from "lucide-vue-next";
 import { ref } from "vue";
+import { Pencil } from "lucide-vue-next";
 import type { Estabelecimentos } from "~/types/Estabelecimentos";
 const isOpen = ref(false);
 
 const emit = defineEmits(["submitted"]);
+const isOpenEdit = ref(false);
 
 const props = defineProps<{
   company: Estabelecimentos;
@@ -18,14 +20,40 @@ function sendData() {
 <template>
   <div class="h-full p-4 flex flex-col gap-4">
     <div class="flex flex-col gap-4">
-      <section>
-        <p class="text-2xl font-bold" v-if="company">
-          {{ props.company.nome }} - {{ props.company.numero_estabelecimento }}
-        </p>
-        <p class="text-md text-gray-500" v-if="company">
-          {{ props.company.razao_social }}
-        </p>
-        <p class="text-2xl font-bold" v-else>Suas Organizações</p>
+      <section class="flex gap-4">
+        <div>
+          <div class="flex gap-2 items-center">
+            <p class="text-2xl font-bold" v-if="company">
+              {{ props.company.nome }} -
+              {{ props.company.numero_estabelecimento }}
+            </p>
+            <Pencil
+              @click="isOpenEdit = true"
+              class="hover:text-emerald-500 cursor-pointer transition"
+            />
+          </div>
+
+          <p class="text-md text-gray-500" v-if="company">
+            {{ props.company.razao_social }}
+          </p>
+          <p class="text-2xl font-bold" v-else>Suas Organizações</p>
+        </div>
+        <Modal
+          :isOpen="isOpenEdit"
+          @close="isOpenEdit = false"
+          :title="'Editar Empresa'"
+          :subtitle="'Altere abaixo os dados da nova empresa'"
+        >
+          <CompanyForm
+            :isOpen="isOpen"
+            @submitted="
+              () => {
+                sendData();
+                isOpen = false;
+              }
+            "
+          />
+        </Modal>
       </section>
       <div class="flex gap-2" v-if="company == null">
         <DefaultButton @click="isOpen = true"
@@ -47,7 +75,11 @@ function sendData() {
             "
           />
         </Modal>
-        <DefaultInput :type="'search'" :placeholder="'Digite aqui'" />
+        <!-- <DefaultInput
+          :type="'search'"
+          :placeholder="'Digite aqui'"
+          v-model:data="text"
+        /> -->
       </div>
     </div>
     <div
