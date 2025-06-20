@@ -2,7 +2,7 @@
 
 Uma aplicação fullstack moderna construída com Nuxt 3 (frontend) e Golang (backend) para gerenciamento eficiente de estabelecimentos comerciais e suas lojas.
 
-![Preview da Aplicação](https://via.placeholder.com/800x400?text=Dashboard+Preview) <!-- Adicione uma imagem real posteriormente -->
+![Preview da Aplicação](https://drive.google.com/file/d/197HzPQUoTTdDW_5-E67JCT6xaKSfncMb/view?usp=sharing)
 
 ## ✨ Funcionalidades Principais
 
@@ -36,7 +36,7 @@ Uma aplicação fullstack moderna construída com Nuxt 3 (frontend) e Golang (ba
 
 - [Golang](https://go.dev) - Linguagem de programação eficiente
 - [Echo](https://echo.labstack.com) - Framework web (se aplicável)
-- Docker - Containerização do serviço
+- [Docker](https://www.docker.com) - Containerização do serviço
 
 ## 🚀 Instalação e Execução
 
@@ -45,7 +45,7 @@ Uma aplicação fullstack moderna construída com Nuxt 3 (frontend) e Golang (ba
 - Node.js 18+
 - Go 1.20+ (apenas para desenvolvimento backend)
 - Docker e Docker Compose
-- npm ou yarn
+- npm
 
 ### 1. Clone o repositório
 
