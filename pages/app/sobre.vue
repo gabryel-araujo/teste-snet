@@ -349,64 +349,8 @@ definePageMeta({
       </div>
     </section>
 
-    <!-- Architecture Section -->
-    <section class="py-16 sm:py-20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Arquitetura do Sistema
-          </h2>
-          <p class="text-gray-400 text-lg max-w-3xl mx-auto">
-            Sistema estruturado seguindo boas práticas de desenvolvimento e
-            princípios SOLID
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Frontend Layer -->
-          <div
-            class="bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl p-6 text-white"
-          >
-            <h3 class="text-xl font-bold mb-4">Camada de Apresentação</h3>
-            <ul class="space-y-2 text-emerald-100">
-              <li>• Interface de usuário responsiva</li>
-              <li>• Validação de formulários</li>
-              <li>• Gerenciamento de estado</li>
-              <li>• Integração com APIs</li>
-            </ul>
-          </div>
-
-          <!-- API Layer -->
-          <div
-            class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white"
-          >
-            <h3 class="text-xl font-bold mb-4">Camada de API</h3>
-            <ul class="space-y-2 text-blue-100">
-              <li>• Endpoints RESTful</li>
-              <li>• Middleware de autenticação</li>
-              <li>• Validação de dados</li>
-              <li>• Tratamento de erros</li>
-            </ul>
-          </div>
-
-          <!-- Database Layer -->
-          <div
-            class="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white"
-          >
-            <h3 class="text-xl font-bold mb-4">Camada de Dados</h3>
-            <ul class="space-y-2 text-purple-100">
-              <li>• Modelo relacional</li>
-              <li>• Integridade referencial</li>
-              <li>• Queries otimizadas</li>
-              <li>• Transações ACID</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Business Rules Section -->
-    <section class="py-16 sm:py-20 bg-gray-800">
+    <section class="py-8 sm:py-8 bg-gray-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
           <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">

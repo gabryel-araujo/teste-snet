@@ -3,27 +3,52 @@ import { ref } from "vue";
 import { Plus, Pencil, ArrowLeft, Trash } from "lucide-vue-next";
 import type { Estabelecimentos } from "~/types/Estabelecimentos";
 import axiosInstance from "~/api/axios";
+import Swal from "sweetalert2";
 const isOpen = ref(false);
 const isOpenEdit = ref(false);
 const isOpenDelete = ref(false);
 
-const emit = defineEmits(["submitted"]);
+const emit = defineEmits(["submitted", "close"]);
+
+const toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  },
+});
 
 const props = defineProps<{
   company: Estabelecimentos;
 }>();
 
-function sendData(data) {
+function sendData(data: any) {
+  toast.fire({ icon: "success", title: "Empresa atualizada com sucesso!" });
   emit("submitted");
   emit("close");
 }
 
 async function handleDelete() {
-  const response = await axiosInstance.delete(
-    `/estabelecimentos/${props.company.id}`
-  );
+  try {
+    const response = await axiosInstance.delete(
+      `/estabelecimentos/${props.company.id}`
+    );
+    emit("close");
+    toast.fire({
+      icon: "success",
+      title: "Empresa apagada com sucesso!",
+    });
+  } catch (error) {
+    toast.fire({
+      icon: "error",
+      title: "Não é possível apagar uma empresa que possua lojas cadastradas",
+    });
+  }
   emit("submitted");
-  emit("close");
 }
 </script>
 
@@ -64,11 +89,7 @@ async function handleDelete() {
             :isOpen="isOpenEdit"
             :company="company"
             @submitted="
-              (data) => {
-                sendData(data);
-                isOpenEdit = false;
-              }
-            "
+          (data:any) => { sendData(data); isOpenEdit = false; } "
           />
         </Modal>
         <Trash
@@ -103,8 +124,8 @@ async function handleDelete() {
           <CompanyForm
             :isOpen="isOpen"
             @submitted="
-              () => {
-                sendData();
+              (data) => {
+                sendData(data);
                 isOpen = false;
               }
             "
@@ -117,14 +138,16 @@ async function handleDelete() {
         /> -->
       </div>
     </div>
-    <div
-      :class="[
-        company == null
-          ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'
-          : 'flex w-full',
-      ]"
-    >
-      <slot />
+    <div class="max-h-96 overflow-y-auto pr-2">
+      <div
+        :class="[
+          company == null
+            ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'
+            : 'flex w-full',
+        ]"
+      >
+        <slot />
+      </div>
     </div>
   </div>
 </template>

@@ -16,7 +16,7 @@ function changeTab(tab) {
 
 <template>
   <div
-    class="w-full bg-slate-900 flex items-center justify-between h-20 gap-2 text-emerald-400 font-semibold p-4"
+    class="w-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-between h-20 gap-2 text-emerald-400 font-semibold p-4 border border-transparent border-b-emerald-500"
   >
     <section
       class="flex items-center gap-2 hover:scale-105 transition duration-300 cursor-pointer"

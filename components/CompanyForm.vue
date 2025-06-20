@@ -1,5 +1,5 @@
 <script setup>
-import { useForm, useField } from "vee-validate";
+import { useForm, useField, defineRule, configure } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/zod";
 import { estabSchema } from "~/schemas/estabSchema";
 import axios from "axios";
@@ -30,27 +30,31 @@ const { value: numero } = useField("numero");
 const emit = defineEmits(["submitted"]);
 
 const onSubmit = handleSubmit(async (values) => {
-  console.log("Empresa cadastrada:", values);
-  let response;
+  try {
+    console.log("Empresa cadastrada:", values);
+    let response;
 
-  if (props.company) {
-    console.log("Editando empresa:", values);
-    response = await axiosInstance.put(
-      `/estabelecimentos/${props.company.id}`,
-      {
+    if (props.company) {
+      console.log("Editando empresa:", values);
+      response = await axiosInstance.put(
+        `/estabelecimentos/${props.company.id}`,
+        {
+          ...values,
+        }
+      );
+    } else {
+      console.log("Cadastrando empresa:", values);
+      response = await axiosInstance.post("/estabelecimentos", {
         ...values,
-      }
-    );
-  } else {
-    console.log("Cadastrando empresa:", values);
-    response = await axiosInstance.post("/estabelecimentos", {
-      ...values,
-    });
-  }
+      });
+    }
 
-  console.log("resposta", response.data);
-  // navigateTo("/app");
-  emit("submitted", values);
+    console.log("resposta", response.data);
+    // navigateTo("/app");
+    emit("submitted", values);
+  } catch (error) {
+    alert(error);
+  }
 });
 
 watch(cep, async (newCep) => {
@@ -63,7 +67,7 @@ watch(cep, async (newCep) => {
       cidade.value = data.localidade;
       estado.value = data.estado;
     } catch (error) {
-      console.error("Erro ao buscar CEP", error);
+      alert("Erro ao buscar CEP", error);
     }
   }
 });
@@ -94,7 +98,9 @@ if (props.company) {
             class="w-full"
             v-model:data="nome"
           />
-          <p class="text-red-500 text-sm transition">{{ errors.nome }}</p>
+          <p class="text-red-500 text-sm transition">
+            {{ errors.nome }}
+          </p>
         </section>
         <section class="w-2/5">
           <label for="numero_estabelecimento" class="text-sm"
