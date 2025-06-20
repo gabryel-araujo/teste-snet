@@ -2,7 +2,7 @@
 
 Uma aplicação fullstack moderna construída com Nuxt 3 (frontend) e Golang (backend) para gerenciamento eficiente de estabelecimentos comerciais e suas lojas.
 
-![Preview da Aplicação](https://drive.google.com/file/d/197HzPQUoTTdDW_5-E67JCT6xaKSfncMb/view?usp=sharing)
+![Preview da Aplicação](https://ugbhukqlrkepsngmllhv.supabase.co/storage/v1/object/public/imgs//Screen%20Shot%202025-06-20%20at%2016.49.02.png)
 
 ## ✨ Funcionalidades Principais
 
