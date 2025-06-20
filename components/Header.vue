@@ -45,7 +45,7 @@ function changeTab(tab) {
         ]"
         @click="changeTab('companies')"
       >
-        Empresas
+        Sobre
       </p>
       <section class="bg-white rounded-full p-2">
         <User class="text-emerald-400" />
