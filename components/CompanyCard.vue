@@ -54,12 +54,6 @@ const props = defineProps<{
           </p>
         </section>
       </section>
-
-      <div
-        class="text-gray-500 group-hover:text-emerald-400 transition-all duration-300 group-hover:translate-x-1"
-      >
-        <ChevronRight class="w-5 h-5" />
-      </div>
     </div>
   </div>
 </template>
