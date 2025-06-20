@@ -76,56 +76,58 @@ O docker automaticamente criará os scripts do banco de dados, mas um arquivo de
 
 ### Estrutura do projeto
 
+```
 teste-snet/
-├── .nuxt/ # Arquivos gerados automaticamente pelo Nuxt
-├── .output/ # Build de produção gerado pelo Nuxt
-├── api/ # Arquivo de Configuração da api
-├── assets/ # Arquivos estáticos do css
-│ ├── css/ # Estilos globais
+├── .nuxt/                  # Arquivos gerados automaticamente pelo Nuxt
+├── .output/                # Build de produção gerado pelo Nuxt
+├── api/                    # Arquivo de Configuração da api
+├── assets/                 # Arquivos estáticos do css
+│   ├── css/                # Estilos globais
 │
-├── back-go-snet/ # Aplicação backend em Golang
-│ ├── db/ # Arquivo de configuração do banco de dados
-│ ├── handler/ # Lógica dos endpoints
-│ ├── models/ # Definições de estruturas de dados
-│ ├── repository/ # Consultas SQL
-│ ├── service/ # Utilização da regra de negócio
-│ ├── docker-compose.yml # Script do docker para iniciar as dependencias
-│ ├── Dockerfile # Script de configuração do docker
-│ ├── go.mod # Dependências do Go
-│ ├── go.sum #
-│ └── main.go # Ponto de entrada da aplicação
+├── back-go-snet/           # Aplicação backend em Golang
+│   ├── db/                 # Arquivo de configuração do banco de dados
+│   ├── handler/            # Lógica dos endpoints
+│   ├── models/             # Definições de estruturas de dados
+│   ├── repository/         # Consultas SQL
+│   ├── service/            # Utilização da regra de negócio
+│   ├── docker-compose.yml  # Script do docker para iniciar as dependencias
+│   ├── Dockerfile          # Script de configuração do docker
+│   ├── go.mod              # Dependências do Go
+│   ├── go.sum              #
+│   └── main.go             # Ponto de entrada da aplicação
 │
-├── components/ # Componentes Vue reutilizáveis
+├── components/             # Componentes Vue reutilizáveis
 │
-├── layouts/ # Layouts da aplicação
-│ ├── default.vue # Layout padrão
-│ └── login.vue # Layout para páginas de autenticação
+├── layouts/                # Layouts da aplicação
+│   ├── default.vue         # Layout padrão
+│   └── login.vue           # Layout para páginas de autenticação
 │
-├── middleware/ # Middlewares de autenticação/roteamento
-│ └── fake-auth.ts # Middleware fake de autenticação
+├── middleware/             # Middlewares de autenticação/roteamento
+│   └── fake-auth.ts        # Middleware fake de autenticação
 │
-├── node_modules/ # Dependências do Node.js
-├── pages/ # Páginas/rotas da aplicação
-│ ├── app/ # Páginas do dashboard
-│ │ ├── index.vue # Dashboard principal
-│ │ ├── sobre.vue # Página da documentação html
-│ │
-│ └── index.vue # Página inicial
+├── node_modules/           # Dependências do Node.js
+├── pages/                  # Páginas/rotas da aplicação
+│   ├── app/          # Páginas do dashboard
+│   │   ├── index.vue       # Dashboard principal
+│   │   ├── sobre.vue       # Página da documentação html
+│   │
+│   └── index.vue           # Página inicial
 │
-├── public/ # Arquivos públicos (acessíveis diretamente)
+├── public/                 # Arquivos públicos (acessíveis diretamente)
 │
-├── schemas/ # Esquemas de validação
-│ ├── estabSchema.ts # Validação de estabelecimentos
-│ ├── loginSchema.ts # Validação de estabelecimentos
-│ └── storeSchema.ts # Validação de lojas
+├── schemas/                # Esquemas de validação
+│   ├── estabSchema.ts      # Validação de estabelecimentos
+│   ├── loginSchema.ts      # Validação de estabelecimentos
+│   └── storeSchema.ts      # Validação de lojas
 │
-├── server/ # Configurações do servidor (Nuxt)
+├── server/                 # Configurações do servidor (Nuxt)
 │
-├── types/ # Tipos TypeScript
+├── types/                  # Tipos TypeScript
 │
-├── .gitignore # Arquivos ignorados pelo Git
-├── app.vue # Componente raiz da aplicação
-├── nuxt.config.ts # Configuração do Nuxt
-├── package-lock.json # Versões exatas das dependências
-├── package.json # Configuração do projeto e scripts
-└── README.md # Documentação do projeto
+├── .gitignore              # Arquivos ignorados pelo Git
+├── app.vue                 # Componente raiz da aplicação
+├── nuxt.config.ts          # Configuração do Nuxt
+├── package-lock.json       # Versões exatas das dependências
+├── package.json            # Configuração do projeto e scripts
+└── README.md               # Documentação do projeto
+```
