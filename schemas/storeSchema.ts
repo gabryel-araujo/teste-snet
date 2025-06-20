@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-export const estabSchema = z.object({
+export const storeSchema = z.object({
   nome: z.string().min(3, "Nome inválido"),
-  numero_estabelecimento: z.coerce.number().nonnegative(),
+  numero_loja: z.coerce.number().nonnegative(),
   razao_social: z.string().min(3, "Razão Social inválida"),
   endereco: z.string().min(3, "Endereço inválido"),
   cidade: z.string().min(3, "Cidade inválida"),
@@ -11,4 +11,4 @@ export const estabSchema = z.object({
   numero: z.string(),
 });
 
-export type EstabForm = z.infer<typeof estabSchema>;
+export type StoreForm = z.infer<typeof storeSchema>;
