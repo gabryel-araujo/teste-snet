@@ -13,7 +13,6 @@ const stores = ref([]);
 onMounted(async () => {
   const response = await axiosInstance.get("/lojas");
   stores.value = response.data;
-  console.log(response.data);
 });
 
 async function getEstabs() {
@@ -30,7 +29,7 @@ async function getEstabs() {
       >
         <thead class="bg-gray-700 text-xs uppercase text-gray-300">
           <tr>
-            <th class="px-4 py-3" @click="isOpen = true">Nome</th>
+            <th class="px-4 py-3">Nome</th>
             <th class="px-4 py-3">Número</th>
             <th class="px-4 py-3">Razão Social</th>
             <th class="px-4 py-3">Endereço</th>

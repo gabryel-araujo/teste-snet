@@ -30,7 +30,12 @@ function closeTab() {
 
 <template>
   <div>
-    <Home v-if="selectedCompany" :company="selectedCompany">
+    <Home
+      v-if="selectedCompany"
+      :company="selectedCompany"
+      @close="closeTab"
+      @submitted="getEstabs"
+    >
       <CompanyTab :company="selectedCompany" @close="closeTab" />
     </Home>
 

@@ -1,28 +1,43 @@
 <script setup lang="ts">
-import { Plus } from "lucide-vue-next";
 import { ref } from "vue";
-import { Pencil } from "lucide-vue-next";
+import { Plus, Pencil, ArrowLeft, Trash } from "lucide-vue-next";
 import type { Estabelecimentos } from "~/types/Estabelecimentos";
+import axiosInstance from "~/api/axios";
 const isOpen = ref(false);
+const isOpenEdit = ref(false);
+const isOpenDelete = ref(false);
 
 const emit = defineEmits(["submitted"]);
-const isOpenEdit = ref(false);
 
 const props = defineProps<{
   company: Estabelecimentos;
 }>();
 
-function sendData() {
+function sendData(data) {
   emit("submitted");
+  emit("close");
+}
+
+async function handleDelete() {
+  const response = await axiosInstance.delete(
+    `/estabelecimentos/${props.company.id}`
+  );
+  emit("submitted");
+  emit("close");
 }
 </script>
 
 <template>
   <div class="h-full p-4 flex flex-col gap-4">
     <div class="flex flex-col gap-4">
-      <section class="flex gap-4">
+      <section class="flex gap-4 items-center justify-between">
         <div>
           <div class="flex gap-2 items-center">
+            <ArrowLeft
+              v-if="company"
+              @click="$emit('close')"
+              class="hover:text-emerald-500 cursor-pointer transition"
+            />
             <p class="text-2xl font-bold" v-if="company">
               {{ props.company.nome }} -
               {{ props.company.numero_estabelecimento }}
@@ -30,6 +45,7 @@ function sendData() {
             <Pencil
               @click="isOpenEdit = true"
               class="hover:text-emerald-500 cursor-pointer transition"
+              v-if="company"
             />
           </div>
 
@@ -45,14 +61,33 @@ function sendData() {
           :subtitle="'Altere abaixo os dados da nova empresa'"
         >
           <CompanyForm
-            :isOpen="isOpen"
+            :isOpen="isOpenEdit"
+            :company="company"
             @submitted="
-              () => {
-                sendData();
-                isOpen = false;
+              (data) => {
+                sendData(data);
+                isOpenEdit = false;
               }
             "
           />
+        </Modal>
+        <Trash
+          class="hover:text-red-500 cursor-pointer transition"
+          @click="isOpenDelete = true"
+          v-if="company"
+        />
+        <Modal
+          :isOpen="isOpenDelete"
+          @close="isOpenDelete = false"
+          :title="'Apagar Empresa'"
+          :subtitle="'Essa ação não poderá ser desfeita'"
+        >
+          <p class="mb-4">
+            A empresa
+            <strong class="text-emerald-500">{{ props.company.nome }}</strong>
+            será apagada permanentemente!
+          </p>
+          <DefaultButton @click="handleDelete">Apagar</DefaultButton>
         </Modal>
       </section>
       <div class="flex gap-2" v-if="company == null">

@@ -9,6 +9,9 @@ const props = defineProps({
   isOpen: {
     type: Boolean,
   },
+  company: {
+    type: Object,
+  },
 });
 
 const { handleSubmit, errors } = useForm({
@@ -28,13 +31,26 @@ const emit = defineEmits(["submitted"]);
 
 const onSubmit = handleSubmit(async (values) => {
   console.log("Empresa cadastrada:", values);
+  let response;
 
-  const response = await axiosInstance.post("/estabelecimentos", {
-    ...values,
-  });
+  if (props.company) {
+    console.log("Editando empresa:", values);
+    response = await axiosInstance.put(
+      `/estabelecimentos/${props.company.id}`,
+      {
+        ...values,
+      }
+    );
+  } else {
+    console.log("Cadastrando empresa:", values);
+    response = await axiosInstance.post("/estabelecimentos", {
+      ...values,
+    });
+  }
 
   console.log("resposta", response.data);
-  emit("submitted");
+  // navigateTo("/app");
+  emit("submitted", values);
 });
 
 watch(cep, async (newCep) => {
@@ -51,6 +67,19 @@ watch(cep, async (newCep) => {
     }
   }
 });
+
+if (props.company) {
+  onMounted(() => {
+    nome.value = props.company.nome;
+    numero_estabelecimento.value = props.company.numero_estabelecimento;
+    razao_social.value = props.company.razao_social;
+    cep.value = props.company.cep;
+    cidade.value = props.company.cidade;
+    estado.value = props.company.estado;
+    endereco.value = props.company.endereco;
+    numero.value = props.company.numero;
+  });
+}
 </script>
 
 <template>
@@ -160,7 +189,7 @@ watch(cep, async (newCep) => {
           </p>
         </section>
       </div>
-      <DefaultButton> Cadastrar </DefaultButton>
+      <DefaultButton> Salvar </DefaultButton>
     </div>
   </form>
 </template>
