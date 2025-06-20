@@ -107,7 +107,7 @@ teste-snet/
 │
 ├── node_modules/           # Dependências do Node.js
 ├── pages/                  # Páginas/rotas da aplicação
-│   ├── app/          # Páginas do dashboard
+│   ├── app/                # Páginas do dashboard
 │   │   ├── index.vue       # Dashboard principal
 │   │   ├── sobre.vue       # Página da documentação html
 │   │
