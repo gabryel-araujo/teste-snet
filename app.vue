@@ -1,6 +1,7 @@
 <template>
-  <div class="bg-gray-950 text-white">
+  <div class="bg-slate-950 text-white h-screen w-screen">
     <NuxtLayout>
+      <SonnerToaster position="top-center" />
       <NuxtPage />
     </NuxtLayout>
   </div>
