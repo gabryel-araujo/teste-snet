@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const estabSchema = z.object({
   nome: z.string().min(3, "Nome inválido"),
-  numero_estabelecimento: z.coerce.number().nonnegative(),
+  numero_estabelecimento: z.coerce.number().nonnegative("Número inválido"),
   razao_social: z.string().min(3, "Razão Social inválida"),
   endereco: z.string().min(3, "Endereço inválido"),
   cidade: z.string().min(3, "Cidade inválida"),

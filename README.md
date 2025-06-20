@@ -4,26 +4,26 @@ Uma aplicação fullstack moderna construída com Nuxt 3 (frontend) e Golang (ba
 
 ![Preview da Aplicação](https://ugbhukqlrkepsngmllhv.supabase.co/storage/v1/object/public/imgs//Screen%20Shot%202025-06-20%20at%2016.49.02.png)
 
-## ✨ Funcionalidades Principais
+## Funcionalidades Principais
 
-### 🚀 Sistema de Autenticação
+### Sistema de Autenticação
 
 - Login simulado com controle de acesso
 - Gerenciamento de sessão do usuário
 
-### 📊 Gestão Completa
+### Gestão Completa
 
 - Cadastro e edição de estabelecimentos comerciais
 - Controle de múltiplas lojas por estabelecimento
 - Dashboard analítico com visão geral
 
-### � UX Avançado
+### UX/UI
 
 - Interface responsiva (mobile, tablet, desktop)
 - Notificações interativas com SweetAlert2
 - Navegação intuitiva
 
-## 🛠 Stack Tecnológica
+## Stack Tecnológica
 
 ### Frontend
 
@@ -38,7 +38,7 @@ Uma aplicação fullstack moderna construída com Nuxt 3 (frontend) e Golang (ba
 - [Echo](https://echo.labstack.com) - Framework web (se aplicável)
 - [Docker](https://www.docker.com) - Containerização do serviço
 
-## 🚀 Instalação e Execução
+## Instalação e Execução
 
 ### Pré-requisitos
 

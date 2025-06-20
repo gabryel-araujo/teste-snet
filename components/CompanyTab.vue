@@ -56,10 +56,6 @@ async function getStores() {
       (loja) => loja.estabelecimento_id == props.company.id
     );
   } catch (error) {
-    toast.fire({
-      icon: "error",
-      title: "Erro ao carregar lojas:",
-    });
     console.error("Erro ao carregar lojas:", error);
     stores.value = [];
   }
@@ -97,7 +93,7 @@ onMounted(getStores);
   <div class="flex flex-col w-full gap-6 p-4">
     <!-- Botão Nova Loja -->
     <div class="flex justify-between items-center">
-      <p class="text-lg font-semibold">Listagem de lojas</p>
+      <p class="text-lg font-semibold">Listagem de Lojas</p>
       <DefaultButton @click="isOpen = true" class="w-full sm:w-auto">
         <Plus class="w-4 h-4 mr-2" /> Nova Loja
       </DefaultButton>
@@ -248,7 +244,7 @@ onMounted(getStores);
               <span class="text-xs text-gray-400 uppercase font-medium"
                 >Endereço</span
               >
-              <span class="text-sm text-white text-right">
+              <span class="text-sm text-white">
                 {{ store.endereco
                 }}{{ store.numero ? ", " + store.numero : "" }}
               </span>

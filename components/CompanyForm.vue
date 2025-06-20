@@ -103,7 +103,7 @@ if (props.company) {
           </p>
         </section>
         <section class="w-2/5">
-          <label for="numero_estabelecimento" class="text-sm"
+          <label for="numero_estabelecimento" class="text-sm truncate"
             >N° Estabelecimento</label
           >
           <DefaultInput

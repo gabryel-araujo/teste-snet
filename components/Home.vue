@@ -40,12 +40,12 @@ async function handleDelete() {
     emit("close");
     toast.fire({
       icon: "success",
-      title: "Empresa apagada com sucesso!",
+      title: "Empresa excluída com sucesso!",
     });
   } catch (error) {
     toast.fire({
       icon: "error",
-      title: "Não é possível apagar uma empresa que possua lojas cadastradas",
+      title: "Não é possível excluir uma empresa que possua lojas cadastradas",
     });
   }
   emit("submitted");
@@ -100,15 +100,15 @@ async function handleDelete() {
         <Modal
           :isOpen="isOpenDelete"
           @close="isOpenDelete = false"
-          :title="'Apagar Empresa'"
+          :title="'Excluir Empresa?'"
           :subtitle="'Essa ação não poderá ser desfeita'"
         >
           <p class="mb-4">
             A empresa
             <strong class="text-emerald-500">{{ props.company.nome }}</strong>
-            será apagada permanentemente!
+            será excluída permanentemente!
           </p>
-          <DefaultButton @click="handleDelete">Apagar</DefaultButton>
+          <DefaultButton @click="handleDelete">Excluir</DefaultButton>
         </Modal>
       </section>
       <div class="flex gap-2" v-if="company == null">
